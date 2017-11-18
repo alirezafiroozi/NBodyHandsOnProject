@@ -18,6 +18,7 @@ private:
     sf::CircleShape mousePoint;
     sf::View view;
     sf::Vertex line[2];
+    sf::Vector2f mousepos;
     System system;
     Planet planet;
     bool mouseIn;
