@@ -2,7 +2,7 @@
 #define ANIMATE_H
 #include <SFML/Graphics.hpp>
 #include "system.h"
-#include "constants.h"
+#include <constants.h>
 
 class Animate
 {
@@ -13,7 +13,6 @@ public:
     void Update();
     void Render();
     void Draw();
-
 private:
     sf::RenderWindow window;
     sf::CircleShape mousePoint;
