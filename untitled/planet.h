@@ -14,10 +14,10 @@ public:
     Planet(sf::Vector2f pos, sf::Vector2f vel,
            float mass, int radius, sf::Color col);
     void Step();
-    void Draw();
+    void Draw(sf::RenderWindow& window);
     sf::Vector2f Force(Planet& other);
     Planet Speed();
-    Planet Acceleration();
+    Planet Acceleration(sf::Vector2f force);
     void Collision(Planet& other);
     bool IsAlive();
 

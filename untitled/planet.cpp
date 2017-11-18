@@ -26,7 +26,7 @@ void Planet::Step()
 
 }
 
-void Planet::Draw()
+void Planet::Draw(sf::RenderWindow& window)
 {
     window.draw(planet);
 }
@@ -55,7 +55,7 @@ Planet Planet::Speed()
     return *this;
 }
 
-Planet Planet::Acceleration()
+Planet Planet::Acceleration(sf::Vector2f force)
 {
     _acc.x = force.x/_mass;
     _acc.y = force.y/_mass;
@@ -67,6 +67,27 @@ void Planet::Collision(Planet& other)
 
     ////EQUATION: gm*sum of(m_i/delta-distance_i)*(direction)
     /// i = each particle
+    double d = sqrt(pow(_pos.x - other._pos.x, 2)
+                    + pow(_pos.y - other._pos.y, 2));
+    if(d < (_radius + other._radius))
+    {
+        if(_mass > other._mass)
+        {
+            _mass += other._mass / 10;
+            _vel.x += other._vel.x / other._mass;
+            _vel.y += other._vel.y / other._mass;
+            other._alive = false;;
+        }
+        if(_mass <= other._mass)
+        {
+            other._mass += _mass / 10;
+            other._vel.x += _vel.x / _mass;
+            other._vel.y += _vel.y / _mass;
+
+            _alive = false;;
+        }
+
+    }
 }
 
 bool Planet::IsAlive()
