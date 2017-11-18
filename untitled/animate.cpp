@@ -76,7 +76,7 @@ void Animate::ProcessEvent(){
 
             sf::Vector2f vel(1,0);
 
-            Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
+            Planet p(mouse_coord, vel, 500, 50, sf::Color::Blue);
             system.Insert(p);
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
