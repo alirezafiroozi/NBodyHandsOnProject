@@ -55,6 +55,7 @@ Animate::ProcessEvent(){
             sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+//                line[0].position = 
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
 
                 }
@@ -74,4 +75,24 @@ Animate::Run(){
 
     cout << "------------------Gravity End----------------------" << endl;
 
+}
+
+Animate::Draw(){
+    if(mouseIn){
+        window.draw(mousePoint);
+    }
+    //draw the planets
+}
+
+
+Animate::Update(){
+    if(mouseIn){
+        mousePoint.getPosition(sf::Mouse);
+    }
+}
+
+Animate::Render(){
+    window.clear();
+    Draw();
+    window.display();
 }
