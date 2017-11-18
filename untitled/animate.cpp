@@ -62,10 +62,10 @@ Animate::ProcessEvent(){
                 line[0] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
                     line[1] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
-                    window.display();
                     window.clear();
                     Draw();
                     window.draw(line, 2, sf::Lines);
+                    window.display();
                 }
             }
         }
