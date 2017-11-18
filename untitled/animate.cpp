@@ -66,13 +66,13 @@ void Animate::ProcessEvent(){
             }
             break;
         case sf::Event::MouseButtonPressed:{
-            sf::Vector2i mouse_coord = sf::Vector2i(mousePoint.getPosition().x, mousePoint.getPosition().y);
+            sf::Vector2f mouse_coord = sf::Vector2f(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
             cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
 
-            sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
+//            sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
 
-            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
+//            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
 
             sf::Vector2f vel(1,0);
 
@@ -80,9 +80,9 @@ void Animate::ProcessEvent(){
             system.Insert(p);
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                line[0] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+                line[0] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
-                    line[1] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+                    line[1] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                     window.clear();
                     Draw();
                     window.draw(line, 2, sf::Lines);
