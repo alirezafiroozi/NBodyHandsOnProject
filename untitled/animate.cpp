@@ -6,6 +6,8 @@ Animate::Animate()
     window.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Gavity");
     window.setFramerateLimit(FRAME_RATE);
 
+    scaling = 1;
+
     //initialize color for the line
     line[0].color = sf::Color::White;
     line[1].color = sf::Color::White;
@@ -20,6 +22,7 @@ Animate::Animate()
     mouseIn = true;
     mousePoint = sf::CircleShape(2.0);
     mousePoint.setFillColor(sf::Color::Cyan);
+    mousePoint.setPosition(sf::Vector2f(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y));
 
     //=====================END OF ANIMATE CTOR=============================
 }
@@ -58,6 +61,11 @@ void Animate::ProcessEvent(){
 
             cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
 
+            sf::Vector2f vel(1,0);
+
+            Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
+            system.Insert(p);
+
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 line[0] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
@@ -88,6 +96,7 @@ void Animate::Run(){
 
 void Animate::Draw(){
     system.Draw(window);
+
     if(mouseIn){
         window.draw(mousePoint);
     }

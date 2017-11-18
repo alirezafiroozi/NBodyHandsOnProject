@@ -23,6 +23,7 @@ private:
     Planet planet;
     bool mouseIn;
     bool pause;
+    double scaling;
 };
 std::string mouse_pos_string(sf::RenderWindow& window);
 
