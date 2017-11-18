@@ -65,6 +65,8 @@ Planet Planet::Acceleration()
 void Planet::Collision(Planet& other)
 {
 
+    ////EQUATION: gm*sum of(m_i/delta-distance_i)*(direction)
+    /// i = each particle
 }
 
 bool Planet::IsAlive()

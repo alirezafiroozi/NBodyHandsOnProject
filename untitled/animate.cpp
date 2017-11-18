@@ -3,7 +3,7 @@
 Animate::Animate()
 {
     //creates window
-    window.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT, "Gavity"));
+    window.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Gavity");
     window.setFramerateLimit(FRAME_RATE);
 
     //initialize color for the line
@@ -24,7 +24,7 @@ Animate::Animate()
     //=====================END OF ANIMATE CTOR=============================
 }
 
-Animate::ProcessEvent(){
+void Animate::ProcessEvent(){
     sf::Event event;
     while(window.pollEvent(event)){
         switch(event.type){
@@ -47,8 +47,8 @@ Animate::ProcessEvent(){
                 view.zoom(0.5f);
                 window.setView(view);break;
             case sf::Keyboard::P:
-                pause = !pause;break;            }
-        }
+                pause = !pause;break;
+            }
         case sf::Event::MouseButtonPressed:{
             sf::Vector2i mouse_coord = sf::Vector2i(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
@@ -69,10 +69,11 @@ Animate::ProcessEvent(){
                 }
             }
         }
+        }
     }
 }
 
-Animate::Run(){
+void Animate::Run(){
     cout << "------------------Gravity Start----------------------" << endl;
 
     while(window.isOpen()){
@@ -85,7 +86,7 @@ Animate::Run(){
 
 }
 
-Animate::Draw(){
+void Animate::Draw(){
     system.Draw(window);
     if(mouseIn){
         window.draw(mousePoint);
@@ -94,7 +95,7 @@ Animate::Draw(){
 }
 
 
-Animate::Update(){
+void Animate::Update(){
     if(mouseIn){
         mousePoint.setPosition(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y);
     }
@@ -104,8 +105,12 @@ Animate::Update(){
 
 }
 
-Animate::Render(){
+void Animate::Render(){
     window.clear();
     Draw();
     window.display();
+}
+
+string mouse_pos_string(sf::RenderWindow &window){
+
 }
