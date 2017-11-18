@@ -2,6 +2,8 @@
 #define PLANET_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "constants.h"
+#include "math.h"
 
 using namespace std;
 
@@ -10,13 +12,13 @@ class Planet
 public:
     Planet();
     Planet(sf::Vector2f pos, sf::Vector2f vel,
-           float mass, sf::Color col);
+           float mass, int radius, sf::Color col);
     void Step();
     void Draw();
-    sf::Vector2f Force();
+    sf::Vector2f Force(Planet& other);
     Planet Speed();
     Planet Acceleration();
-    void Collision();
+    void Collision(Planet& other);
     bool IsAlive();
 
 private:
