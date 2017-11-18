@@ -43,15 +43,28 @@ void Animate::ProcessEvent(){
             switch(event.key.code){
             case sf::Keyboard::Escape:
                 window.close();
-            case sf::Keyboard::A:
-                view.zoom(2.0f);
+            case sf::Keyboard::A:                
+                scaling++;
+                if(scaling >= 4){
+                    scaling = 4;
+                }else{
+                    view.zoom(2.0);
+                }
+                cout << "scaling:" << scaling << endl;
                 window.setView(view);break;
             case sf::Keyboard::S:
-                view.zoom(0.5f);
+                scaling--;
+                if(scaling <= -1){
+                    scaling = -1;
+                }else{
+                    view.zoom(0.5);
+                }
+                cout << "scaling:" << scaling << endl;
                 window.setView(view);break;
             case sf::Keyboard::P:
                 pause = !pause;break;
             }
+            break;
         case sf::Event::MouseButtonPressed:{
             sf::Vector2i mouse_coord = sf::Vector2i(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
