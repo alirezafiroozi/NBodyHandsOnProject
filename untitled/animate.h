@@ -20,6 +20,8 @@ private:
     sf::View view2;
     sf::Vertex line[2];
     sf::Vector2f mousepos;
+    sf::Vector2i mouse_coord;
+    sf::Vector2f world_coord;
     System system;
     Planet planet;
     bool mouseIn;
