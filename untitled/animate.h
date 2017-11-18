@@ -17,6 +17,7 @@ private:
     sf::RenderWindow window;
     sf::CircleShape mousePoint;
     sf::View view;
+    sf::View view2;
     sf::Vertex line[2];
     sf::Vector2f mousepos;
     System system;

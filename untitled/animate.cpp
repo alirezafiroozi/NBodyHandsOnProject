@@ -17,6 +17,7 @@ Animate::Animate()
     mousepos = window.mapPixelToCoords(sf::Mouse::getPosition());
     view.setCenter(mousepos);
     window.setView(view);
+    view2 = window.getDefaultView();
 
     //sets up mouse cursor
     mouseIn = true;
@@ -48,7 +49,7 @@ void Animate::ProcessEvent(){
                 if(scaling >= 4){
                     scaling = 4;
                 }else{
-                    view.zoom(2.0);
+                    view.zoom(2.0f);
                 }
                 cout << "scaling:" << scaling << endl;
                 window.setView(view);break;
@@ -57,10 +58,16 @@ void Animate::ProcessEvent(){
                 if(scaling <= -1){
                     scaling = -1;
                 }else{
-                    view.zoom(0.5);
+                    view.zoom(0.5f);
                 }
                 cout << "scaling:" << scaling << endl;
                 window.setView(view);break;
+            case sf::Keyboard::D:
+                view2.zoom(2.0f);
+                window.setView(view2);break;
+            case sf::Keyboard::F:
+                view2.zoom(0.5f);
+                window.setView(view2);break;
             case sf::Keyboard::P:
                 pause = !pause;break;
             }
