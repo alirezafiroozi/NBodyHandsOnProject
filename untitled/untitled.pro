@@ -28,4 +28,4 @@ HEADERS += \
     animate.h \
     planet.h \
     system.h \
-    constancts.h
+    constants.h
