@@ -2,7 +2,7 @@
 #define ANIMATE_H
 #include <SFML/Graphics.hpp>
 #include "system.h"
-#include <constants.h>
+#include <constancts.h>
 
 class Animate
 {
