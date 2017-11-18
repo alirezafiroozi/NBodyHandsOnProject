@@ -28,3 +28,11 @@ SOURCES += \
     planet.cpp \
     system.cpp
 
+<<<<<<< HEAD
+HEADERS += \
+    animate.h \
+    planet.h \
+    system.h \
+    constants.h
+=======
+>>>>>>> 2a6153280ffa0b2b196e9bd7e347b300e6a9bd18
