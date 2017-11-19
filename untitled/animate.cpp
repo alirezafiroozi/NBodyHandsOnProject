@@ -139,6 +139,11 @@ void Animate::Render(){
     window.display();
 }
 
-string mouse_pos_string(sf::RenderWindow &window){
-
+string mouse_pos_string(sf::RenderWindow &window)
+{
+    return "(" +
+            to_string(sf::Mouse::getPosition(window).x) +
+            ", " +
+            to_string(sf::Mouse::getPosition(window).y) +
+            ")";
 }
