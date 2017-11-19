@@ -91,7 +91,7 @@ void Animate::ProcessEvent(){
                     window.display();
                 }
             }
-            sf::Vector2f vel((line[1].position.x - line[0].position.x),(line[1].position.y - line[0].position.y));
+            sf::Vector2f vel((line[1].position.x - line[0].position.x)/100,(line[1].position.y - line[0].position.y)/100);
 
             Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
             system.Insert(p);
