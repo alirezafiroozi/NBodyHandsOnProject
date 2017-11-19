@@ -17,6 +17,7 @@ Animate::Animate()
     mousepos = window.mapPixelToCoords(sf::Mouse::getPosition());
     view.setCenter(mousepos);
     window.setView(view);
+    view2 = window.getDefaultView();
 
     //sets up mouse cursor
     mouseIn = true;
@@ -48,7 +49,7 @@ void Animate::ProcessEvent(){
                 if(scaling >= 4){
                     scaling = 4;
                 }else{
-                    view.zoom(2.0);
+                    view.zoom(2.0f);
                 }
                 cout << "scaling:" << scaling << endl;
                 window.setView(view);break;
@@ -57,32 +58,38 @@ void Animate::ProcessEvent(){
                 if(scaling <= -1){
                     scaling = -1;
                 }else{
-                    view.zoom(0.5);
+                    view.zoom(0.5f);
                 }
                 cout << "scaling:" << scaling << endl;
                 window.setView(view);break;
+            case sf::Keyboard::D:
+                view2.zoom(2.0f);
+                window.setView(view2);break;
+            case sf::Keyboard::F:
+                view2.zoom(0.5f);
+                window.setView(view2);break;
             case sf::Keyboard::P:
                 pause = !pause;break;
             }
             break;
         case sf::Event::MouseButtonPressed:{
-            sf::Vector2i mouse_coord = sf::Vector2i(mousePoint.getPosition().x, mousePoint.getPosition().y);
+            sf::Vector2f pos = sf::Vector2f(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
             cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
 
-            sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
+//            sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
 
-            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
+//            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
 
             sf::Vector2f vel(1,0);
 
-            Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
+            Planet p(pos, vel, 500, 50, sf::Color::Blue);
             system.Insert(p);
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                line[0] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+                line[0] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
-                    line[1] = sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+                    line[1] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                     window.clear();
                     Draw();
                     window.draw(line, 2, sf::Lines);
