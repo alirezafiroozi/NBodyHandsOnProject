@@ -21,7 +21,7 @@ Animate::Animate()
 
     //sets up mouse cursor
     mouseIn = true;
-    mousePoint = sf::CircleShape(2.0);
+    mousePoint = sf::CircleShape(20.0);
     mousePoint.setFillColor(sf::Color::Cyan);
     mousePoint.setPosition(sf::Vector2f(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y));
 
@@ -75,7 +75,7 @@ void Animate::ProcessEvent(){
         case sf::Event::MouseButtonPressed:{
             sf::Vector2f mouse_coord = sf::Vector2f(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
-            cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
+            //cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
 
 //            sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
 
@@ -90,12 +90,14 @@ void Animate::ProcessEvent(){
                 line[0] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
                     line[1] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+
                     window.clear();
                     Draw();
                     window.draw(line, 2, sf::Lines);
                     window.display();
                 }
             }
+
         }
         }
     }
