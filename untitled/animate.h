@@ -29,6 +29,7 @@ private:
     double scaling;
     int par_mass;
     int par_size;
+    float mouseX, mouseY;
     sf::Color par_color;
 };
 std::string mouse_pos_string(sf::RenderWindow& window);

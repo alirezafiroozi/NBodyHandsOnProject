@@ -6,6 +6,8 @@ Animate::Animate()
     window.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Gavity");
     window.setFramerateLimit(FRAME_RATE);
 
+    system = System();
+
     scaling = 1;
 
     //initialize color for the line
@@ -13,16 +15,13 @@ Animate::Animate()
     line[1].color = sf::Color::White;
 
     //set up view
-    view = sf::View(window.getDefaultView());
     view.setCenter(mousepos);
-    window.setView(view);
     view2 = window.getDefaultView();
 
     //sets up mouse cursor
     mouseIn = true;
-    mousePoint = sf::CircleShape(2.0);
+    mousePoint = sf::CircleShape(5.0);
     mousePoint.setFillColor(sf::Color::Cyan);
-    mousePoint.setPosition(sf::Vector2f(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y));
 
     //setup particle
     par_mass = 50;
@@ -33,7 +32,7 @@ Animate::Animate()
 
 void Animate::ProcessEvent(){
     sf::Event event;
-    while(window.pollEvent(event)){
+     while(window.pollEvent(event)){
         switch(event.type){
         case sf::Event::Closed:
             window.close();break;
@@ -42,7 +41,8 @@ void Animate::ProcessEvent(){
         case sf::Event::MouseLeft:
             mouseIn = false;break;
         case sf::Event::MouseMoved:
-            mousePoint.getPosition();break;
+            mouseX = event.mouseMove.x;
+            mouseY = event.mouseMove.y;break;
         case sf::Event::KeyPressed:
             switch(event.key.code){
             case sf::Keyboard::Escape:
@@ -143,12 +143,8 @@ void Animate::Draw(){
 
 void Animate::Update(){
     if(mouseIn){
-        mousePoint.setPosition(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y);
+        mousePoint.setPosition(mouseX, mouseY);
     }
-
-    mousepos = window.mapPixelToCoords(sf::Mouse::getPosition());
-    view.setCenter(mousepos);
-
 }
 
 void Animate::Render(){
