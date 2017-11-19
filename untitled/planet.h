@@ -2,7 +2,7 @@
 #define PLANET_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "constants.h"
+#include "constancts.h"
 #include "math.h"
 
 using namespace std;

@@ -6,7 +6,32 @@ using namespace std;
 System::System()
 {
 //    cout << "System CTOR got called\n";
-//    Planet planet;
+    Planet planet;
+
+
+//    sf::Vector2f pos(140 * pow(10, 6), 0);
+//    sf::Vector2f vel(-4000, -4000);
+//    float massE = 5.97 * pow(10,23);
+//    sf::Color colE(sf::Color::Blue);
+//    Planet Earth(pos, vel, massE, 6378000, colE);
+//    planetVector.push_back(Earth);
+
+//    sf::Vector2f posM(100 * pow(10, 6), 0);
+//    sf::Vector2f velM(-4000, -4000);
+//    float massM = 3.3 * pow(10,3);
+//    sf::Color colM(sf::Color::White);
+//    Planet Mercury(posM, velM, massM, 2440000, colM);
+//    planetVector.push_back(Mercury);
+
+//    sf::Vector2f posS(0, 0);
+//    sf::Vector2f velS(0, 0);
+//    float massS = 1.99 * pow(10,30);
+//    sf::Color colS(sf::Color::Yellow);
+//    Planet Sun(posS, velS, massS, 6950000, colS);
+//    planetVector.push_back(Sun);
+
+
+
 
 //    sf::Vector2f pos(140 * pow(10, 6), 0);
 //    sf::Vector2f vel(400, 400);
