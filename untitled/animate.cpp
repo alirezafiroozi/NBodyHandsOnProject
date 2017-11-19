@@ -14,7 +14,6 @@ Animate::Animate()
 
     //set up view
     view = sf::View(window.getDefaultView());
-    mousepos = window.mapPixelToCoords(sf::Mouse::getPosition());
     view.setCenter(mousepos);
     window.setView(view);
     view2 = window.getDefaultView();
@@ -25,6 +24,10 @@ Animate::Animate()
     mousePoint.setFillColor(sf::Color::Cyan);
     mousePoint.setPosition(sf::Vector2f(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y));
 
+    //setup particle
+    par_mass = 50;
+    par_size = 20;
+    par_color = sf::Color::White;
     //=====================END OF ANIMATE CTOR=============================
 }
 
