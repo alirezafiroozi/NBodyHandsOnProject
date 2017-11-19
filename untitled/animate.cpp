@@ -21,7 +21,7 @@ Animate::Animate()
 
     //sets up mouse cursor
     mouseIn = true;
-    mousePoint = sf::CircleShape(20.0);
+    mousePoint = sf::CircleShape(2.0);
     mousePoint.setFillColor(sf::Color::Cyan);
     mousePoint.setPosition(sf::Vector2f(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y));
 
@@ -44,7 +44,7 @@ void Animate::ProcessEvent(){
             switch(event.key.code){
             case sf::Keyboard::Escape:
                 window.close();
-            case sf::Keyboard::A:                
+            case sf::Keyboard::A:
                 scaling++;
                 if(scaling >= 4){
                     scaling = 4;
@@ -73,31 +73,29 @@ void Animate::ProcessEvent(){
             }
             break;
         case sf::Event::MouseButtonPressed:{
-            sf::Vector2f pos = sf::Vector2f(mousePoint.getPosition().x, mousePoint.getPosition().y);
+            mouse_coord = sf::Vector2i(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
-            //cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
+            cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
 
-//            sf::Vector2f world_coord = window.mapPixelToCoords(mouse_coord);
+            world_coord = window.mapPixelToCoords(mouse_coord);
 
-//            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
+            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
 
             sf::Vector2f vel(1,0);
 
-            Planet p(pos, vel, 500, 50, sf::Color::Blue);
+            Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
             system.Insert(p);
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 line[0] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
                     line[1] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-
                     window.clear();
                     Draw();
                     window.draw(line, 2, sf::Lines);
                     window.display();
                 }
             }
-
         }
         }
     }
