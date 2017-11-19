@@ -73,7 +73,7 @@ void Animate::ProcessEvent(){
             }
             break;
         case sf::Event::MouseButtonPressed:{
-            sf::Vector2f mouse_coord = sf::Vector2f(mousePoint.getPosition().x, mousePoint.getPosition().y);
+            sf::Vector2f pos = sf::Vector2f(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
             //cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
 
@@ -83,7 +83,7 @@ void Animate::ProcessEvent(){
 
             sf::Vector2f vel(1,0);
 
-            Planet p(mouse_coord, vel, 500, 50, sf::Color::Blue);
+            Planet p(pos, vel, 500, 50, sf::Color::Blue);
             system.Insert(p);
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
