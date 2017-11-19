@@ -43,7 +43,19 @@ void Animate::ProcessEvent(){
         case sf::Event::KeyPressed:
             switch(event.key.code){
             case sf::Keyboard::Escape:
-                window.close();
+                window.close();break;
+            case sf::Keyboard::Num1:
+                par_mass = 100;
+                par_size = 40;break;
+            case sf::Keyboard::Num2:
+                par_mass = 200;
+                par_size = 90;break;
+            case sf::Keyboard::Num3:
+                par_mass = 300;
+                par_size = 140;break;
+            case sf::Keyboard::Num4:
+                par_mass = 400;
+                par_size = 190;break;
             case sf::Keyboard::A:
                 scaling++;
                 if(scaling >= 4){
@@ -93,7 +105,7 @@ void Animate::ProcessEvent(){
             }
             sf::Vector2f vel((line[1].position.x - line[0].position.x)/100,(line[1].position.y - line[0].position.y)/100);
 
-            Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
+            Planet p(world_coord, vel, par_mass, par_size, sf::Color::Blue);
             system.Insert(p);
         }
         }

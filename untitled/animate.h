@@ -27,6 +27,8 @@ private:
     bool mouseIn;
     bool pause;
     double scaling;
+    int par_mass;
+    int par_size;
 };
 std::string mouse_pos_string(sf::RenderWindow& window);
 
