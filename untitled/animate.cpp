@@ -143,7 +143,8 @@ void Animate::Draw(){
 
 void Animate::Update(){
     if(mouseIn){
-        mousePoint.setPosition(mouseX, mouseY);
+        sf::Vector2i p(mouseX, mouseY);
+        mousePoint.setPosition(window.mapPixelToCoords(p));
     }
 }
 
