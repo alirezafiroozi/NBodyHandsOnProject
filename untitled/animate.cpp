@@ -6,6 +6,8 @@ Animate::Animate()
     window.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Gavity");
     window.setFramerateLimit(FRAME_RATE);
 
+    system = System();
+
     scaling = 1;
 
     //initialize color for the line
@@ -13,24 +15,24 @@ Animate::Animate()
     line[1].color = sf::Color::White;
 
     //set up view
-    view = sf::View(window.getDefaultView());
-    mousepos = window.mapPixelToCoords(sf::Mouse::getPosition());
     view.setCenter(mousepos);
-    window.setView(view);
     view2 = window.getDefaultView();
 
     //sets up mouse cursor
     mouseIn = true;
-    mousePoint = sf::CircleShape(2.0);
+    mousePoint = sf::CircleShape(5.0);
     mousePoint.setFillColor(sf::Color::Cyan);
-    mousePoint.setPosition(sf::Vector2f(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y));
 
+    //setup particle
+    par_mass = 50;
+    par_size = 20;
+    par_color = sf::Color::White;
     //=====================END OF ANIMATE CTOR=============================
 }
 
 void Animate::ProcessEvent(){
     sf::Event event;
-    while(window.pollEvent(event)){
+     while(window.pollEvent(event)){
         switch(event.type){
         case sf::Event::Closed:
             window.close();break;
@@ -39,21 +41,26 @@ void Animate::ProcessEvent(){
         case sf::Event::MouseLeft:
             mouseIn = false;break;
         case sf::Event::MouseMoved:
-            mousePoint.getPosition();break;
+            mouseX = event.mouseMove.x;
+            mouseY = event.mouseMove.y;break;
         case sf::Event::KeyPressed:
             switch(event.key.code){
             case sf::Keyboard::Escape:
                 window.close();break;
             case sf::Keyboard::Num1:
+                par_color = sf::Color::Yellow;
                 par_mass = 100;
                 par_size = 40;break;
             case sf::Keyboard::Num2:
+                par_color = sf::Color::Blue;
                 par_mass = 200;
                 par_size = 90;break;
             case sf::Keyboard::Num3:
+                par_color = sf::Color::Red;
                 par_mass = 300;
                 par_size = 140;break;
             case sf::Keyboard::Num4:
+                par_color = sf::Color::Green;
                 par_mass = 400;
                 par_size = 190;break;
             case sf::Keyboard::A:
@@ -105,7 +112,7 @@ void Animate::ProcessEvent(){
             }
             sf::Vector2f vel((line[1].position.x - line[0].position.x)/100,(line[1].position.y - line[0].position.y)/100);
 
-            Planet p(world_coord, vel, par_mass, par_size, sf::Color::Blue);
+            Planet p(world_coord, vel, par_mass, par_size, par_color);
             system.Insert(p);
         }
         }
@@ -131,18 +138,13 @@ void Animate::Draw(){
     if(mouseIn){
         window.draw(mousePoint);
     }
-    //draw the planets
 }
 
 
 void Animate::Update(){
     if(mouseIn){
-        mousePoint.setPosition(sf::Mouse::getPosition(window).x,sf::Mouse::getPosition(window).y);
+        mousePoint.setPosition(mouseX, mouseY);
     }
-
-    mousepos = window.mapPixelToCoords(sf::Mouse::getPosition());
-    view.setCenter(mousepos);
-
 }
 
 void Animate::Render(){
