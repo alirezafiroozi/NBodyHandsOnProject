@@ -69,22 +69,28 @@ void Planet::Collision(Planet& other)
     ///
     float tempX = 0.0;
     float tempY = 0.0;
-    if(_mass >= other._mass)
+    double d = sqrt(pow(_pos.x - other._pos.x, 2)
+                        + pow(_pos.y - other._pos.y, 2));
+    if(d < (_radius + other._radius))
     {
-        tempX = _mass * pow(_vel.x, 2) + other._mass * pow(other._vel.x, 2);
-        tempY = _mass * pow(_vel.y, 2) + other._mass * pow(other._vel.y, 2);
-        _vel.x = sqrt(tempX / (_mass + other._mass));
-        _vel.y = sqrt(tempY / (_mass + other._mass));
-        other._alive = false;
+        if(_mass >= other._mass)
+        {
+            tempX = _mass * pow(_vel.x, 2) + other._mass * pow(other._vel.x, 2);
+            tempY = _mass * pow(_vel.y, 2) + other._mass * pow(other._vel.y, 2);
+            _vel.x = sqrt(tempX / (_mass + other._mass));
+            _vel.y = sqrt(tempY / (_mass + other._mass));
+            other._alive = false;
+        }
+        if(_mass < other._mass)
+        {
+            tempX = _mass * pow(_vel.x, 2) + other._mass * pow(other._vel.x, 2);
+            tempY = _mass * pow(_vel.y, 2) + other._mass * pow(other._vel.y, 2);
+            other._vel.x = sqrt(tempX / (_mass + other._mass));
+            other._vel.y = sqrt(tempY / (_mass + other._mass));
+            _alive = false;
+        }
     }
-    if(_mass < other._mass)
-    {
-        tempX = _mass * pow(_vel.x, 2) + other._mass * pow(other._vel.x, 2);
-        tempY = _mass * pow(_vel.y, 2) + other._mass * pow(other._vel.y, 2);
-        other._vel.x = sqrt(tempX / (_mass + other._mass));
-        other._vel.y = sqrt(tempY / (_mass + other._mass));
-        _alive = false;
-    }
+
 
     //    double d = sqrt(pow(_pos.x - other._pos.x, 2)
 //                    + pow(_pos.y - other._pos.y, 2));
