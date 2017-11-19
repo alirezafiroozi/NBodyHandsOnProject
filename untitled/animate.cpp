@@ -77,15 +77,10 @@ void Animate::ProcessEvent(){
 
             cout << "Mouse Coord:" << mouse_coord.x << "," << mouse_coord.y << endl;
 
-            world_coord = window.mapPixelToCoords(mouse_coord);
+//            world_coord = window.mapPixelToCoords(mouse_coord);
+            world_coord = sf::Vector2f(mousePoint.getPosition().x, mousePoint.getPosition().y);
 
-            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
-
-            sf::Vector2f vel(1,0);
-
-            Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
-            system.Insert(p);
-
+//            cout << "World Coord:" << world_coord.x << "," << world_coord.y << endl;
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 line[0] = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
                 while(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Event::MouseMoved){
@@ -96,6 +91,10 @@ void Animate::ProcessEvent(){
                     window.display();
                 }
             }
+            sf::Vector2f vel((line[1].position.x - line[0].position.x),(line[1].position.y - line[0].position.y));
+
+            Planet p(world_coord, vel, 500, 50, sf::Color::Blue);
+            system.Insert(p);
         }
         }
     }
