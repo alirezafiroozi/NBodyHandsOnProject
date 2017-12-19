@@ -3,7 +3,7 @@
 Animate::Animate()
 {
     //creates window
-    window.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Gavity");
+    window.create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGHT), "Gravity");
     window.setFramerateLimit(FRAME_RATE);
 
     system = System();

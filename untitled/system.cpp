@@ -79,7 +79,7 @@ void System::Draw(sf::RenderWindow &window)
             it = planetVector.begin();
             break;
         }
-        for(int n = 0; n < planetVector.size(); n++)
+        for(int n = i; n < planetVector.size(); n++)
         {
             if(n != i)
             {
